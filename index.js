@@ -64,7 +64,7 @@ server.post('/api/shorturl/', async (req, res) => {
       valid = false;
     }
     if (!valid) {
-      res.status(404);
+      res.status(200);
       return res.json({ error: 'invalid url' });
     }
     index += 1;
