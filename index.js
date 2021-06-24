@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dns from 'dns';
 
+const bodyParser = require('body-parser');
+
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
@@ -12,7 +14,7 @@ let index = 0;
 
 function checkUrlMiddleware(req, res, next) {
   if (req.method === 'POST') {
-    if (req.body['url'] === null || req.body['url'] === undefined) {
+    if (req.body.url === null || req.body.url === undefined) {
       res.status(400);
       res.json({ error: 'no url informed' });
     }
@@ -21,7 +23,9 @@ function checkUrlMiddleware(req, res, next) {
 }
 
 const server = express();
-server.use(express.json());
+// server.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 server.use(cors());
 
 server.get('/', async (req, res) => {
