@@ -46,6 +46,7 @@ server.use(checkUrlMiddleware);
 
 server.post('/api/shorturl/', async (req, res) => {
   let { url } = req.body;
+  console.log('URL sent: ' + url);
   let valid = true;
   if (url.startsWith('https')) {
     url = url.substring(8);
