@@ -1,8 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dns from 'dns';
-
-const bodyParser = require('body-parser');
+import bodyParser from 'body-parser';
 
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
@@ -24,8 +23,8 @@ function checkUrlMiddleware(req, res, next) {
 
 const server = express();
 // server.use(express.json());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
 server.use(cors());
 
 server.get('/', async (req, res) => {
