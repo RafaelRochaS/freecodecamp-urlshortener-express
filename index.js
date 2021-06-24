@@ -46,6 +46,7 @@ server.use(checkUrlMiddleware);
 
 server.post('/api/shorturl/', async (req, res) => {
   let { url } = req.body;
+  url = url.split('?')[0];
   console.log('URL sent: ' + url);
   let valid = true;
   if (url.startsWith('https')) {
@@ -59,7 +60,7 @@ server.post('/api/shorturl/', async (req, res) => {
       valid = false;
     }
     if (!valid) {
-      res.status(400);
+      res.status(404);
       return res.json({ error: 'invalid url' });
     }
     index += 1;
