@@ -1,0 +1,25 @@
+{
+  "name": "freecodecamp-urlshortener-express",
+  "version": "1.0.0",
+  "description": "Project for the Freecodecamp API Certification - URL Shortener - with express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RafaelRochaS/freecodecamp-urlshortener-express.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RafaelRochaS/freecodecamp-urlshortener-express/issues"
+  },
+  "homepage": "https://github.com/RafaelRochaS/freecodecamp-urlshortener-express#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "type": "module"
+}
