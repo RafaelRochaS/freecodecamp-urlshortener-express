@@ -46,15 +46,19 @@ server.use(checkUrlMiddleware);
 
 server.post('/api/shorturl/', async (req, res) => {
   let { url } = req.body;
-  url = url.split('?')[0];
-  console.log('URL sent: ' + url);
-  let valid = true;
-  if (url.startsWith('https')) {
-    url = url.substring(8);
-  } else if (url.startsWith('http')) {
-    url = url.substring(7);
+  let urlTemp = url.split('?')[0];
+  if (urlTemp.endsWith('/')) {
+    urlTemp = urlTemp.slice(0, -1);
   }
-  dns.lookup(url, (err, addresses) => {
+  console.log('URL sent: ' + url);
+  console.log('URLTemp: ' + urlTemp);
+  let valid = true;
+  if (urlTemp.startsWith('https')) {
+    urlTemp = urlTemp.substring(8);
+  } else if (urlTemp.startsWith('http')) {
+    urlTemp = urlTemp.substring(7);
+  }
+  dns.lookup(urlTemp, (err, addresses) => {
     console.log(addresses);
     if (addresses === null || addresses === undefined) {
       valid = false;
@@ -64,10 +68,10 @@ server.post('/api/shorturl/', async (req, res) => {
       return res.json({ error: 'invalid url' });
     }
     index += 1;
-    urls.set(index, req.body['url']);
+    urls.set(index, url);
     console.log(urls);
     res.status(201);
-    return res.json({ original_url: req.body['url'], short_url: index });
+    return res.json({ original_url: url, short_url: index });
   });
 });
 
